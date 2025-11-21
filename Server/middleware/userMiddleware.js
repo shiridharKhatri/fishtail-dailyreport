@@ -4,7 +4,8 @@ const jwt = require("jsonwebtoken");
 const userMiddlware = async(req, res, next) => {
   try {
     // let token = await req.cookies["employee_token"];
-    let token = req.headers("auth-token")
+    let token = req.headers["auth-token"];
+  
     if (!token) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
