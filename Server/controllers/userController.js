@@ -33,7 +33,6 @@ exports.login = async (req, res) => {
       });
     }
 
-
     if (user.approved === false || user.role === "pending") {
       return res.status(403).json({
         success: false,
@@ -54,9 +53,9 @@ exports.login = async (req, res) => {
 
     return res
       .cookie("employee_token", token, {
-        httpOnly: false,
-        secure: true,
-        sameSite: "lax",
+        httpOnly: true,
+        secure: true, // only works on HTTPS
+        sameSite: "none", // required for cross-site cookies
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .json({
