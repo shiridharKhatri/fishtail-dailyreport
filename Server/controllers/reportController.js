@@ -1,11 +1,12 @@
-const { default: Employee } = require("../models/Auth/Employee.js");
+
+const Employee = require("../models/Auth/Employee.js");
 const Report = require("../models/Report.js");
 
 exports.postReport = async (req, res) => {
   try {
     const userId = req.userId;
     const { reportDate, activity } = req.body;
-    
+
     let employee = await Employee.findById(userId);
 
     if (!employee) {
