@@ -5,7 +5,7 @@ exports.postReport = async (req, res) => {
   try {
     const userId = req.userId;
     const { reportDate, activity } = req.body;
-
+    
     let employee = await Employee.findById(userId);
 
     if (!employee) {
