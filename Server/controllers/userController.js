@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { oauth2client } = require("../util/googleConfig.js");
-const { default: Employee } = require("../models/Auth/Employee.js");
+const Employee = require("../models/Auth/Employee.js");
 
 const ALLOWED_DOMAIN = "@fishtailinfosolutions.com";
 

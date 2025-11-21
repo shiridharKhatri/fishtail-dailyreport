@@ -3,27 +3,30 @@ const connectToDatabase = require("./database/connection");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const path  = require('path')
+const path = require("path");
 const cookieParser = require("cookie-parser");
 dotenv.config();
 
 const DATABASE_URL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 4000;
 
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", " https://c405120a0b17.ngrok-free.app"],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
-app.use(express.json()); 2
+app.use(express.json());
+2;
 
 // app.get("/", async (req, res) => {
 //   return res.redirect(302, 'https://zotetech.com');
 // });
 
-app.use("/api/auth/employee", require('./routes/userRoute') )
-app.use("/api/report/employee", require("./routes/reportRoute"))
+app.use("/api/auth/employee", require("./routes/userRoute"));
+app.use("/api/report/employee", require("./routes/reportRoute"));
 app.use("/attachments", express.static(path.join(__dirname, "images")));
 
 app.get("/", async (req, res) => {
