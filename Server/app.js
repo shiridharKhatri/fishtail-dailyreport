@@ -9,10 +9,14 @@ dotenv.config();
 
 const DATABASE_URL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 4000;
-
+app.set("trust proxy", 1);
 app.use(
   cors({
-    origin: ["https://fishtail-dailyreport-frontend-ma8j.vercel.app", "https://demo.zotetech.com", "http://localhost:3000"],
+    origin: [
+      "https://fishtail-dailyreport-frontend-ma8j.vercel.app", 
+      "https://demo.zotetech.com", 
+      "http://localhost:3000"
+    ],
     credentials: true
   })
 );

@@ -53,10 +53,10 @@ exports.login = async (req, res) => {
 
     return res
       .cookie("employee_token", token, {
-        httpOnly: true, // secure from JS access
-        secure: true, // must be HTTPS
-        sameSite: "none", // REQUIRED for cross-site
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: true, // REQUIRED
+        sameSite: "none", // REQUIRED for Vercel -> Zotetech communication
+        maxAge: 24 * 60 * 60 * 1000,
       })
       .json({
         success: true,
