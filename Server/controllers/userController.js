@@ -53,9 +53,9 @@ exports.login = async (req, res) => {
 
     return res
       .cookie("employee_token", token, {
-        httpOnly: true,
-        secure: true, // only works on HTTPS
-        sameSite: "none", // required for cross-site cookies
+        httpOnly: true, // secure from JS access
+        secure: true, // must be HTTPS
+        sameSite: "none", // REQUIRED for cross-site
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .json({

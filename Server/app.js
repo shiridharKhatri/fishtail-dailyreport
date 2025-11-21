@@ -12,14 +12,15 @@ const PORT = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", " https://c405120a0b17.ngrok-free.app"],
-    credentials: true,
+    origin: ["https://c405120a0b17.ngrok-free.app"],
+    credentials: true
   })
 );
 
+
 app.use(cookieParser());
 app.use(express.json());
-2;
+
 
 // app.get("/", async (req, res) => {
 //   return res.redirect(302, 'https://zotetech.com');
