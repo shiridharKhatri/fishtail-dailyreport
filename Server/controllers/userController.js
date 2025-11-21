@@ -51,18 +51,20 @@ exports.login = async (req, res) => {
       }
     );
 
-    return res
-      .cookie("employee_token", token, {
-        httpOnly: true,
-        secure: true, // REQUIRED
-        sameSite: "none", // REQUIRED for Vercel -> Zotetech communication
-        maxAge: 24 * 60 * 60 * 1000,
-      })
-      .json({
-        success: true,
-        message: user ? "Logged in" : "Account created and logged in",
-        redirect: "/employee",
-      });
+    // return res
+    // .cookie("employee_token", token, {
+    //   httpOnly: true,
+    //   secure: false,
+    //   sameSite: "none",
+    //   maxAge: 24 * 60 * 60 * 1000,
+    // })
+
+    return res.status(200).json({
+      success: true,
+      message: user ? "Logged in" : "Account created and logged in",
+      redirect: "/employee",
+      token,
+    });
   } catch (err) {
     return res.status(500).json({
       success: false,
