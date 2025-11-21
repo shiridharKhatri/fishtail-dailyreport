@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: ["https://c405120a0b17.ngrok-free.app"],
+    origin: ["https://c405120a0b17.ngrok-free.app", "https://demo.zotetech.com", "http://localhost:3000"],
     credentials: true
   })
 );
