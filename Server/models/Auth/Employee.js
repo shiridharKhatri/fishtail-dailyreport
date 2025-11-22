@@ -18,7 +18,7 @@ const employeeSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["full_time", "intern", "pending"],
+      enum: ["fulltime", "intern", "pending"],
       default: "pending",
     },
 
@@ -37,6 +37,14 @@ const employeeSchema = new mongoose.Schema(
     joinedAt: {
       type: Date,
       default: Date.now,
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+      default: "other",
+    },
+    dateOfBirth: {
+      type: Date,
     },
 
     // admin approval flag

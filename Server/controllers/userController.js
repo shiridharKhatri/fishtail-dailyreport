@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const { oauth2client } = require("../util/googleConfig.js");
 const Employee = require("../models/Auth/Employee.js");
+const Admin = require("../models/Auth/Admin.js");
 
 const ALLOWED_DOMAIN = "@fishtailinfosolutions.com";
 
@@ -97,25 +98,29 @@ exports.getUserData = async (req, res) => {
   }
 };
 
-exports.verifyUser = async (req, res) => {
+
+exports.editUserData = async (req, res) => {
   try {
     let id = req.userId;
-    let user = await Employee.findById(id).select("-password");
-
+    let user = await Employee.findById(id);
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User not found",
+        message: "User not found with given id",
       });
     }
-    let data = {
-      message: "Verified successfully",
-      role: "employee",
-      redirect: "/dashboard",
-    };
+    const { name, phone, location, gender, dateOfBirth } = req.body;
+    user.name = name || user.name;
+    user.phone = phone || user.phone;
+    user.location = location || user.location;
+    user.gender = gender || user.gender;
+    user.dateOfBirth = dateOfBirth || user.dateOfBirth;
+    await user.save();
+
     return res.status(200).json({
       success: true,
-      data,
+      message: "User data updated successfully",
+      user,
     });
   } catch (error) {
     return res.status(500).json({
